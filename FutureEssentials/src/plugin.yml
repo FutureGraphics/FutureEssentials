@@ -1,0 +1,9 @@
+name: FutureEssentials
+version: 0.1
+author: FutureCode
+description: FutureEssentials by FutureCode
+website: FutureCode.me
+main: future.code.essentials.main.main
+commands:
+  essentials:
+    description: essentials command
