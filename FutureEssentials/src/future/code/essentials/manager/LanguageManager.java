@@ -32,6 +32,12 @@ public class LanguageManager {
 			config.options().copyDefaults(true);
 			config.addDefault("NoAccess", "%prefix% &cYou have no access");
 			config.addDefault("ReloadMessage", "%prefix% &eReload complete");
+			config.addDefault("ConsoleCreatePlayer", "New player entry createt %player% with the uuid %uuid%");
+			config.addDefault("PlayerNotFound", "%prefix% &cPlayer not found");
+			config.addDefault("WrongFormat", "%prefix% &cWrong format");
+			config.addDefault("GamemodeChanged", "%prefix% &eYour gamode has been change to %gamemode%");
+			config.addDefault("OtherGamemodeChange", "%prefix% &eYou have change the gamemode from %target% to %targetgamemode%");
+			config.addDefault("WrongPlayer", "%prefix% &eYou can't type in your self");
 			save();
 		}
 	}
@@ -42,6 +48,30 @@ public class LanguageManager {
 		} catch (IOException e) {
 			System.out.println("Essentials: Config-Error");
 		}
+	}
+	
+	public static String WrongPlayer() {
+		return config.getString("WrongPlayer");
+	}
+	
+	public static String OtherGamemodeChange() {
+		return config.getString("OtherGamemodeChange");
+	}
+	
+	public static String GamemodeChanged() {
+		return config.getString("GamemodeChanged");
+	}
+	
+	public static String WrongFormat() {
+		return config.getString("WrongFormat");
+	}
+	
+	public static String PlayerNotFound() {
+		return config.getString("PlayerNotFound");
+	}
+	
+	public static String ConsoleCreatePlayer() {
+		return config.getString("ConsoleCreatePlayer");
 	}
 	
 	public static String ReloadMessage() {

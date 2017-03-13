@@ -60,6 +60,10 @@ public class MainManager {
 			config.addDefault("Home.default", 3);
 			config.addDefault("Home.premium", 4);
 			
+			//Economy
+			config.addDefault("Economy.Format", "$");
+			config.addDefault("Economy.DefaultAmount", 0.0);
+			
 			//Kit
 			List<String> kitItemList = new ArrayList<String>();
 			kitItemList.add("1:5, amount:1, name:&8Stone, lore:&8I am;a Stone, sharpness:1, noEnchants:true");
@@ -71,6 +75,10 @@ public class MainManager {
 			//Chat
 			config.addDefault("Chat.Format", "%group% &e%player% &8> &f%message%");
 			config.addDefault("Chat.OPColor", "5");
+			
+			//Warps
+			List<String> warpList = new ArrayList<String>();
+			config.addDefault("Warps", warpList);
 			save();
 		}
 	}
@@ -82,7 +90,15 @@ public class MainManager {
 			System.out.println("Essentials: Config-Error");
 		}
 	}
+	
+	public static int getEconomyFormat() {
+		return config.getInt("Economy.DefaultAmount");
+	}
 
+	public static Double getDefaultAmount() {
+		return config.getDouble("Economy.DefaultAmount");
+	}
+	
 	public static String getPrefix() {
 		return config.getString("Server.Prefix");
 	}

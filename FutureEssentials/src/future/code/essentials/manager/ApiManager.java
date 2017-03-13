@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -41,5 +42,42 @@ public class ApiManager {
 		format = format.replace("&", "§");
 		return format;
 	}
- 	
+	
+	public static String encryptPlayerFormat(String format, Player player) {
+		format = format.replace("%server%", MainManager.getName());
+		format = format.replace("%prefix%", MainManager.getPrefix());
+		format = format.replace("%player%", player.getName());
+		format = format.replace("%uuid%", player.getUniqueId().toString());
+		if(player.getCustomName() != null) {
+			format = format.replace("%nickname%", player.getCustomName());
+		} else {
+			format = format.replaceAll("%nickname%", player.getName());
+		}
+		format = format.replace("%heal%", Double.toString(player.getHealth()));
+		format = format.replace("%food%", Double.toString(player.getFoodLevel()));
+		format = format.replace("%location%", player.getLocation().toString());
+		format = format.replace("%money%", Double.toString(PlayerManager.getMoney(player)));
+		format = format.replace("%gamemode%", player.getGameMode().toString());
+		format = format.replace("&", "§");
+		return format;
+	}
+	
+	public static String encryptTargetFormat(String format, Player target) {
+		format = format.replace("%server%", MainManager.getName());
+		format = format.replace("%prefix%", MainManager.getPrefix());
+		format = format.replace("%target%", target.getName());
+		format = format.replace("%targetuuid%", target.getUniqueId().toString());
+		if(target.getCustomName() != null) {
+			format = format.replace("%targetnickname%", target.getCustomName());
+		} else {
+			format = format.replaceAll("%targetnickname%", target.getName());
+		}
+		format = format.replace("%targetheal%", Double.toString(target.getHealth()));
+		format = format.replace("%targetfood%", Double.toString(target.getFoodLevel()));
+		format = format.replace("%targetlocation%", target.getLocation().toString());
+		format = format.replace("%targetmoney%", Double.toString(PlayerManager.getMoney(target)));
+		format = format.replace("%targetgamemode%", target.getGameMode().toString());
+		format = format.replace("&", "§");
+		return format;
+	}
 }

@@ -1,6 +1,5 @@
 package future.code.essentials.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -36,7 +35,16 @@ public class EssentialsCommand implements CommandExecutor {
 							player.sendMessage(main.noAccess);
 						}
 
+					} else if(args[0].equalsIgnoreCase("author")) {
+						if(player.hasPermission("essentials.command.author")) {
+							player.sendMessage(main.prefix + "§8Essentials by §eFutureCode");
+							player.sendMessage(main.prefix + "§8Website: futurecode.me");
+						} else {
+							player.sendMessage(main.noAccess);
+						}
 					}
+				} else {
+					player.sendMessage(main.prefix + " §8[ reload / author ]");
 				}
 			} else {
 				player.sendMessage(main.noAccess);
@@ -45,7 +53,12 @@ public class EssentialsCommand implements CommandExecutor {
 			if(args.length > 0) {
 				if(args[0].equalsIgnoreCase("reload")) {
 					plugin.getMainManager().load();
-					Bukkit.getConsoleSender().sendMessage("§8Essentials-§7MainManager: §aOK");
+					sender.sendMessage(main.prefix + "§8Essentials-§7MainManager: §aOK");
+					plugin.getPlayerManager().load();
+					sender.sendMessage(main.prefix + "§8Essentials-§7PlayerManager: §aOK");
+					plugin.getLanguageManager().load();
+					sender.sendMessage(main.prefix + "§8Essentials-§7LanguageManager: §aOK");
+					sender.sendMessage(LanguageManager.ReloadMessage());
 				}
 			} else {
 				sender.sendMessage("[ reload / author ]");

@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import future.code.essentials.commands.EssentialsCommand;
+import future.code.essentials.commands.GamemodeCommand;
 import future.code.essentials.listener.JoinListener;
 import future.code.essentials.manager.ApiManager;
 import future.code.essentials.manager.LanguageManager;
@@ -16,6 +17,8 @@ public class main extends JavaPlugin{
 	
 	public static String prefix;
 	public static String noAccess;
+	public static String playerNotFound;
+	public static String wrongPlayer;
 	
 	//Listener
 	
@@ -30,6 +33,7 @@ public class main extends JavaPlugin{
 	//Commands
 	
 	private EssentialsCommand essentialsCommand;
+	private GamemodeCommand gamemodeCommand;
 	
 	@Override
 	public void onEnable() {
@@ -37,6 +41,8 @@ public class main extends JavaPlugin{
 		Bukkit.getConsoleSender().sendMessage("§8Essentials-§7Manager: §aOK");
 		prefix = ApiManager.encryptFormat(MainManager.getPrefix());
 		noAccess = LanguageManager.noAccess();
+		playerNotFound = ApiManager.encryptFormat(LanguageManager.PlayerNotFound());
+		wrongPlayer = ApiManager.encryptFormat(LanguageManager.WrongPlayer());
 		loadListener();
 		Bukkit.getConsoleSender().sendMessage("§8Essentials-§7Listener: §aOK");
 		loadCommands();
@@ -55,11 +61,18 @@ public class main extends JavaPlugin{
 	}
 	
 	private void loadCommands() {
+		gamemodeCommand = new GamemodeCommand(this);
+		getCommand("gm").setExecutor(gamemodeCommand);
+		
 		essentialsCommand = new EssentialsCommand(this);
 		getCommand("essentials").setExecutor(essentialsCommand);
 	}
 	
 	//Geter setter
+	
+	public GamemodeCommand getGamemodeCommand() {
+		return gamemodeCommand;
+	}
 	
 	public LanguageManager getLanguageManager() {
 		return languageManager;

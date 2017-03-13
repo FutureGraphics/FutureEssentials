@@ -6,4 +6,6 @@ website: FutureCode.me
 main: future.code.essentials.main.main
 commands:
   essentials:
-    description: essentials command
+    description: Essentials command
+  gm:
+    description: Gamemode Essentials command
